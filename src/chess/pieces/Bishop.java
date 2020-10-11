@@ -5,15 +5,15 @@ import boardgame.Position;
 import chess.ChessPiece;
 import chess.Color;
 
-public class Rook extends ChessPiece {
+public class Bishop extends ChessPiece {
 
-	public Rook(Board board, Color color) {
+	public Bishop(Board board, Color color) {
 		super(board, color);
 	}
 	
 	@Override
 	public String toString() {
-		return "R";
+		return "B";
 	}
 	
 	@Override
@@ -22,41 +22,41 @@ public class Rook extends ChessPiece {
 		
 		Position p = new Position(0,0);
 		
-		//marcando as posições vazias ou com peça adversária ACIMA da peça 
-		p.setValues(position.getRow() - 1, position.getColumn());
+		//marcando as posições vazias ou com peça adversária NW da peça 
+		p.setValues(position.getRow() - 1, position.getColumn() - 1);
 		while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
-			p.setRow(p.getRow() - 1);
+			p.setValues(p.getRow() - 1, p.getColumn() - 1);
 		}
 		if(getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		
-		//marcando as posições vazias ou com peça adversária ESQUERDA da peça 
-		p.setValues(position.getRow(), position.getColumn() - 1);
+		//marcando as posições vazias ou com peça adversária NE da peça 
+		p.setValues(position.getRow() - 1, position.getColumn() + 1);
 		while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
-			p.setColumn(p.getColumn() - 1);
+			p.setValues(p.getRow() - 1, p.getColumn() + 1);
 		}
 		if(getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		
-		//marcando as posições vazias ou com peça adversária DIREITA da peça 
-		p.setValues(position.getRow(), position.getColumn() + 1);
+		//marcando as posições vazias ou com peça adversária SE da peça 
+		p.setValues(position.getRow() + 1, position.getColumn() + 1);
 		while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
-			p.setColumn(p.getColumn() + 1);
+			p.setValues(p.getRow() + 1, p.getColumn() + 1);
 		}
 		if(getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		
-		//marcando as posições vazias ou com peça adversária ABAIXO da peça 
-		p.setValues(position.getRow() + 1, position.getColumn());
+		//marcando as posições vazias ou com peça adversária SW da peça 
+		p.setValues(position.getRow() + 1, position.getColumn() - 1);
 		while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
-			p.setRow(p.getRow() + 1);
+			p.setValues(p.getRow() + 1, p.getColumn() - 1);
 		}
 		if(getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
